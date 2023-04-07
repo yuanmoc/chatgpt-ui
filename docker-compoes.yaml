@@ -1,0 +1,20 @@
+version: '3'
+services:
+  chatgpt:
+    restart: always
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: chatgpt:1.0.0
+    container_name: chatgpt
+    ports:
+      - 3000:3000
+    environment:
+      - OPENAI_API_KEY=
+      - CODE=123456
+      - BASE_URL=api.openai.com
+      - PROTOCOL=https
+networks:
+  default:
+    external:
+      name: app-net
