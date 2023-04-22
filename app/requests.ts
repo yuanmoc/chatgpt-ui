@@ -172,6 +172,7 @@ export async function requestChatStream(
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "X-Accel-Buffering": "no",
         path: "v1/chat/completions",
         ...getHeaders(),
       },

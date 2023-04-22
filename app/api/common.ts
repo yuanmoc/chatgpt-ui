@@ -24,6 +24,7 @@ export async function requestOpenai(req: NextRequest) {
   return fetch(`${baseUrl}/${openaiPath}`, {
     headers: {
       "Content-Type": "application/json",
+      "X-Accel-Buffering": "no",
       Authorization: `Bearer ${apiKey}`,
       ...(process.env.OPENAI_ORG_ID && {
         "OpenAI-Organization": process.env.OPENAI_ORG_ID,
