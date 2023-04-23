@@ -1,5 +1,7 @@
 "use client";
 
+import { useAccessStore } from "@/app/store";
+
 require("../polyfill");
 
 import { useState, useEffect, StyleHTMLAttributes } from "react";
@@ -42,6 +44,7 @@ export function useSwitchTheme() {
   const config = useAppConfig();
 
   useEffect(() => {
+    setCode();
     document.body.classList.remove("light");
     document.body.classList.remove("dark");
 
@@ -133,4 +136,14 @@ export function Home() {
       <Router>{isMobileScreen ? <MobileScreen /> : <WideScreen />}</Router>
     </ErrorBoundary>
   );
+}
+
+export function setCode() {
+  const searchParams = new URLSearchParams(window.location.search);
+
+  const code = searchParams.get("code");
+  const accessStore = useAccessStore.getState();
+  if (code != null) {
+    accessStore.accessCode = code;
+  }
 }
